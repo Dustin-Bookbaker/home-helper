@@ -36,7 +36,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             currentIndex: TabHelper.index(_currentTab),
             onTap: (index) => _selectTab(TabHelper.item(index)),
             iconSize: 26.0,
-            selectedItemColor: Colors.blue,
+            selectedItemColor: Colors.lightGreen,
             unselectedItemColor: Colors.grey,
             items: [
               for (var item in TabItem.values)
