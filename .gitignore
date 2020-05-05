@@ -8,7 +8,8 @@
 .buildlog/
 .history
 .svn/
-
+*.gradle
+adroid/app/
 # IntelliJ related
 *.iml
 *.ipr
