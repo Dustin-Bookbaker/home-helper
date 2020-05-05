@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'package:homehelper/Common/constants/routing_constants.dart';
+import 'Navigation/router.dart' as router;
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp();
-  }
-}
+  static GlobalKey<NavigatorState> _navigatorKey;
 
-class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        navigatorKey: _navigatorKey,
+        title: "homeHelper",
+        builder: (_, widget) {
+          return widget;
+        },
+        initialRoute: homeRoute,
+        onGenerateRoute: router.generateRoute,
+      );
 }
