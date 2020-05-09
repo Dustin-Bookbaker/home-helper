@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "391349404694",
+    "firebase_url": "https://home-helper-2231d.firebaseio.com",
+    "project_id": "home-helper-2231d",
+    "storage_bucket": "home-helper-2231d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391349404694:android:6a6b481f01a2c3e0c02137",
+        "android_client_info": {
+          "package_name": "com.example.homehelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391349404694-83p2ui510pbk17k23f65geaf9nqjj0qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTckxo05qjwpVlXA9wnqpiE0QS5_t-NuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391349404694-83p2ui510pbk17k23f65geaf9nqjj0qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

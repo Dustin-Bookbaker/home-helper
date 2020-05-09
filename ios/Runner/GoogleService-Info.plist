@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>391349404694-7kekdfu70qs7m8tn938i8iln04ebldif.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.391349404694-7kekdfu70qs7m8tn938i8iln04ebldif</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCO-LXnTH6fHoFkPC55Xy5aPo3G9-Dnb7Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>391349404694</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.homehelper</string>
+	<key>PROJECT_ID</key>
+	<string>home-helper-2231d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>home-helper-2231d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:391349404694:ios:eb5f133d74252987c02137</string>
+	<key>DATABASE_URL</key>
+	<string>https://home-helper-2231d.firebaseio.com</string>
+</dict>
+</plist>

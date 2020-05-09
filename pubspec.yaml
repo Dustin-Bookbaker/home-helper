@@ -19,19 +19,35 @@ dependencies:
 
   # Interface components
   assorted_layout_widgets: ^1.0.15
-  cached_network_image: ^2.0.0
+#  cached_network_image: ^2.0.0
   cupertino_icons: ^0.1.2
-  dotted_border: ^1.0.5
+#  dotted_border: ^1.0.5
   dynamic_theme: ^1.0.1
   flare_flutter: ^2.0.1
   flutter_map: ^0.8.2
-  flutter_rating_bar: ^3.0.1+1
-  flutter_slidable: ^0.5.4
+#  flutter_rating_bar: ^3.0.1+1
+#  flutter_slidable: ^0.5.4
   font_awesome_flutter: ^8.7.0
-  percent_indicator: ^2.1.1+1
-  qr_flutter: ^3.2.0
-  qr_mobile_vision: ^0.3.1
-  reorderables: ^0.3.2
+#  percent_indicator: ^2.1.1+1
+#  qr_flutter: ^3.2.0
+#  qr_mobile_vision: ^0.3.1
+#  reorderables: ^0.3.2
+
+  #Utility
+  rxdart: ^0.23.0
+  observable: ^0.22.2
+  copy_with_extension: ^1.0.7
+  equatable: ^1.1.1
+#  http: ^0.12.0+4
+  meta: ^1.1.8
+#  package_info: ^0.4.0+16
+#  path_provider: ^1.6.5
+  timeago: ^2.0.26
+  url_launcher: ^5.4.2
+#  cloud_firestore: ^0.13.0+1
+  firebase_auth: ^0.16.0
+  google_sign_in: ^4.0.1+1
+  provider: ^4.0.1
 
 dev_dependencies:
   effective_dart: ^1.2.1
@@ -44,5 +60,8 @@ dev_dependencies:
   json_serializable: ^3.2.5
 
 flutter:
+  assets:
+    - assets/
+    - assets/flare/
 
   uses-material-design: true

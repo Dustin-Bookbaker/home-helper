@@ -12,7 +12,7 @@ class HelperTheme extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.blueGrey),
           brightness: Brightness.light,
           primarySwatch: Colors.lightGreen,
-          primaryColor: Colors.white,
+          primaryColor: Colors.lightGreen[400],
           cursorColor: Colors.blue,
           accentColor: Color.fromARGB(255, 1, 68, 87),
           backgroundColor: Color.fromRGBO(243, 243, 243, 1.0),
