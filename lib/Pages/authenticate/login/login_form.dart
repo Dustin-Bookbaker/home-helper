@@ -5,17 +5,12 @@ import 'package:homehelper/Bloc/login/login_bloc.dart';
 import 'package:homehelper/Bloc/user/user_bloc.dart';
 import 'package:homehelper/Common/constants/routing_constants.dart';
 import 'package:homehelper/Pages/authenticate/register/create_account_button.dart';
-import 'package:homehelper/Pages/authenticate/login/google_login_button.dart';
 import 'package:homehelper/Pages/authenticate/login/login_button.dart';
 import 'package:homehelper/repositories/user/user_repository.dart';
 
 class LoginForm extends StatefulWidget {
-  final UserRepository _userRepository;
-
   LoginForm({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+      : super(key: key);
 
   State<LoginForm> createState() => _LoginFormState();
 }
@@ -25,9 +20,6 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   LoginBloc _loginBloc;
-  UserBloc _userBloc;
-
-  UserRepository get _userRepository => widget._userRepository;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -40,7 +32,6 @@ class _LoginFormState extends State<LoginForm> {
   void initState() {
     super.initState();
     _loginBloc = BlocProvider.of<LoginBloc>(context);
-    _userBloc = BlocProvider.of<UserBloc>(context);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
   }
@@ -132,7 +123,7 @@ class _LoginFormState extends State<LoginForm> {
                               : null,
                         ),
 //                        GoogleLoginButton(),
-                        CreateAccountButton(userRepository: _userRepository),
+                        CreateAccountButton(),
                       ],
                     ),
                   ),

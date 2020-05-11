@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:homehelper/Bloc/ticket/ticket_bloc.dart';
-import 'package:homehelper/Pages/profile/model/helper_user.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 

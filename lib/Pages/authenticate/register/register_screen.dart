@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:homehelper/Pages/authenticate/register/register_form.dart';
-import 'package:homehelper/repositories/user/user_repository.dart';
 
 class RegisterScreen extends StatefulWidget {
-  final UserRepository _userRepository;
-
-  RegisterScreen({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
-        super(key: key);
+  RegisterScreen({
+    Key key,
+  }) : super(key: key);
 
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
