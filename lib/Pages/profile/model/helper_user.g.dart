@@ -8,6 +8,7 @@ part of 'helper_user.dart';
 
 HelperUser _$HelperUserFromJson(Map<String, dynamic> json) {
   return HelperUser(
+    uid: json['uid'] as String,
     name: json['name'] as String,
     rating: (json['rating'] as num).toDouble(),
     score: json['score'] as int,
@@ -16,6 +17,7 @@ HelperUser _$HelperUserFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$HelperUserToJson(HelperUser instance) =>
     <String, dynamic>{
+      'uid': instance.uid,
       'name': instance.name,
       'rating': instance.rating,
       'score': instance.score,

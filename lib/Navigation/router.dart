@@ -5,6 +5,8 @@ import 'package:homehelper/Common/constants/routing_constants.dart';
 import 'package:homehelper/Pages/authenticate/login/login_screen.dart';
 import 'package:homehelper/Pages/home/home_settings_page.dart';
 import 'package:homehelper/Pages/splash_page.dart';
+import 'package:homehelper/Pages/ticket/create_ticket_page.dart';
+import 'package:homehelper/Pages/ticket/ticket_page.dart';
 import 'package:homehelper/repositories/user/user_repository.dart';
 
 import 'Bottom_navigation/bottom_navigation.dart';
@@ -33,6 +35,14 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case homeSettingsRoute:
       return MaterialPageRoute(
         builder: (context) => HomeSettingsPage(),
+      );
+    case ticketRoute:
+      return MaterialPageRoute(
+        builder: (context) => TicketPage(ticket: settings.arguments),
+      );
+    case createTicketRoute:
+      return MaterialPageRoute(
+        builder: (context) => CreateTicketPage(),
       );
     default:
       return MaterialPageRoute(

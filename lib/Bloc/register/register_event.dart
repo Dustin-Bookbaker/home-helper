@@ -26,10 +26,12 @@ class PasswordChanged extends RegisterEvent {
 }
 
 class Submitted extends RegisterEvent {
+  final String userName;
   final String email;
   final String password;
 
-  Submitted({@required this.email, @required this.password});
+  Submitted(
+      {@required this.userName, @required this.email, @required this.password});
 
   @override
   String toString() {

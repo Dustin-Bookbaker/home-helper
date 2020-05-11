@@ -9,6 +9,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -79,6 +80,15 @@ class _RegisterFormState extends State<RegisterForm> {
               child: ListView(
                 children: <Widget>[
                   TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      labelText: 'UserName',
+                    ),
+                    autocorrect: false,
+                    autovalidate: true,
+                  ),
+                  TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.email),
@@ -139,6 +149,7 @@ class _RegisterFormState extends State<RegisterForm> {
   void _onFormSubmitted() {
     _registerBloc.add(
       Submitted(
+        userName: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
       ),

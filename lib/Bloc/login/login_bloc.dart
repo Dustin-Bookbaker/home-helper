@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homehelper/Bloc/login/validators.dart';
-import 'package:observable/observable.dart';
-import 'package:rxdart/rxdart.dart';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:homehelper/repositories/user/user_repository.dart';
@@ -12,7 +11,6 @@ part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository _userRepository;
-
   LoginBloc({
     @required UserRepository userRepository,
   })  : assert(userRepository != null),

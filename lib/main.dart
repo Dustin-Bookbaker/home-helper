@@ -1,10 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homehelper/Bloc/auth/auth_bloc.dart';
 import 'package:homehelper/Bloc/login/login_bloc.dart';
 import 'package:homehelper/Bloc/register/register_bloc.dart';
+import 'package:homehelper/Bloc/ticket/ticket_bloc.dart';
+import 'package:homehelper/Bloc/user/user_bloc.dart';
 
 import 'package:homehelper/Common/constants/routing_constants.dart';
 import 'package:homehelper/repositories/user/user_repository.dart';
@@ -37,7 +37,15 @@ class MyApp extends StatelessWidget {
               BlocProvider<RegisterBloc>(
                 create: (context) =>
                     RegisterBloc(userRepository: UserRepository()),
-              )
+              ),
+              BlocProvider<UserBloc>(
+                create: (context) => UserBloc(userRepository: UserRepository()),
+                lazy: false,
+              ),
+              BlocProvider<TicketBloc>(
+                create: (context) => TicketBloc(),
+                lazy: false,
+              ),
             ],
             child: MaterialApp(
               navigatorKey: _navigatorKey,

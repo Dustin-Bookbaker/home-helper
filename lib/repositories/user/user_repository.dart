@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -29,10 +30,27 @@ class UserRepository {
   }
 
   Future<void> signUp({String email, String password}) async {
-    return await _firebaseAuth.createUserWithEmailAndPassword(
+    await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+  }
+
+  Future<void> addUserToFireStore({String userName}) async {
+    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    UserUpdateInfo info = new UserUpdateInfo();
+    info.displayName = userName;
+    await user.updateProfile(info);
+    await user.reload();
+    user = await FirebaseAuth.instance.currentUser();
+
+    Firestore.instance.collection('helperUsers').document().setData({
+      'name': user.displayName,
+      'uid': user.uid,
+      'email': user.email,
+      'rating': 0,
+      'score': 0.0,
+    });
   }
 
   Future<void> signOut() async {
@@ -48,6 +66,6 @@ class UserRepository {
   }
 
   Future<String> getUser() async {
-    return (await _firebaseAuth.currentUser()).displayName;
+    return (await _firebaseAuth.currentUser()).uid;
   }
 }

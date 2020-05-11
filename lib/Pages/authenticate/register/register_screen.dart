@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:homehelper/Bloc/register/register_bloc.dart';
 import 'package:homehelper/Pages/authenticate/register/register_form.dart';
 import 'package:homehelper/repositories/user/user_repository.dart';
 

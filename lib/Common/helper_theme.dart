@@ -9,13 +9,15 @@ class HelperTheme extends StatelessWidget {
   Widget build(BuildContext context) => DynamicTheme(
         defaultBrightness: Brightness.light,
         data: (brightness) => ThemeData(
-          iconTheme: IconThemeData(color: Colors.blueGrey),
+          iconTheme: IconThemeData(color: Colors.lightGreen[500]),
+          scaffoldBackgroundColor: Colors.lightGreen[50],
+          dialogBackgroundColor: Colors.lightGreen[50],
           brightness: Brightness.light,
-          primarySwatch: Colors.lightGreen,
+          primarySwatch: Colors.green,
           primaryColor: Colors.lightGreen[400],
-          cursorColor: Colors.blue,
-          accentColor: Color.fromARGB(255, 1, 68, 87),
-          backgroundColor: Color.fromRGBO(243, 243, 243, 1.0),
+          cursorColor: Colors.lightGreen[700],
+          accentColor: Colors.lightGreen[500],
+          backgroundColor: Colors.lightGreen[50],
           textTheme: TextTheme(
             body1: TextStyle(
               color: Colors.blueGrey[800],

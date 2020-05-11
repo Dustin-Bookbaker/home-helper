@@ -1,4 +1,4 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -11,12 +11,14 @@ class HelperUser extends Equatable {
 
   final String uid;
   final String name;
+  final String email;
   final double rating;
   final int score;
 
   const HelperUser({
     @required this.uid,
     this.name,
+    this.email,
     this.rating,
     this.score,
   });
@@ -24,8 +26,16 @@ class HelperUser extends Equatable {
   const HelperUser._anonUser(String uid)
       : uid = uid,
         name = 'Anonymous',
+        email = '',
         rating = 0.0,
         score = 0;
+
+  HelperUser.fromDocument(DocumentSnapshot document)
+      : uid = document['uid'] ?? '',
+        name = document['name'] ?? '',
+        email = document['email'] ?? '',
+        rating = (document['rating']).toDouble() ?? 0.0,
+        score = (document['score']).toInt() ?? 0;
 
   factory HelperUser.fromJson(Map<String, dynamic> json) =>
       _$HelperUserFromJson(json);

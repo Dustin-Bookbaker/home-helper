@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homehelper/Bloc/auth/auth_bloc.dart';
 import 'package:homehelper/Bloc/login/login_bloc.dart';
+import 'package:homehelper/Bloc/user/user_bloc.dart';
 import 'package:homehelper/Common/constants/routing_constants.dart';
 import 'package:homehelper/Pages/authenticate/register/create_account_button.dart';
 import 'package:homehelper/Pages/authenticate/login/google_login_button.dart';
@@ -24,6 +25,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _passwordController = TextEditingController();
 
   LoginBloc _loginBloc;
+  UserBloc _userBloc;
 
   UserRepository get _userRepository => widget._userRepository;
 
@@ -38,6 +40,7 @@ class _LoginFormState extends State<LoginForm> {
   void initState() {
     super.initState();
     _loginBloc = BlocProvider.of<LoginBloc>(context);
+    _userBloc = BlocProvider.of<UserBloc>(context);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
   }
@@ -77,6 +80,7 @@ class _LoginFormState extends State<LoginForm> {
         }
         if (state.isSuccess) {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+          BlocProvider.of<UserBloc>(context).add(UserLoginEvent());
           Navigator.of(context).pushReplacementNamed(homeRoute);
         }
       },
@@ -127,7 +131,7 @@ class _LoginFormState extends State<LoginForm> {
                               ? _onFormSubmitted
                               : null,
                         ),
-                        GoogleLoginButton(),
+//                        GoogleLoginButton(),
                         CreateAccountButton(userRepository: _userRepository),
                       ],
                     ),
