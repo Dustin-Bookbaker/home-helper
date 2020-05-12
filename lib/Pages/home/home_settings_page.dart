@@ -4,10 +4,10 @@ class HomeSettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Settings'),
+          title: Text('Einstellungen'),
         ),
         body: Center(
-          child: Text('Settings'),
+          child: Text('Einstellungen'),
         ),
       );
 }

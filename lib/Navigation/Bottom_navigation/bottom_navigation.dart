@@ -85,9 +85,9 @@ abstract class TabHelper {
   static String description(TabItem tabItem) {
     switch (tabItem) {
       case TabItem.home:
-        return 'home';
+        return 'Home';
       case TabItem.profile:
-        return 'profile';
+        return 'Profil';
       default:
         return '';
     }

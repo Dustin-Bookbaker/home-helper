@@ -70,13 +70,28 @@ class TicketModifyEvent extends TicketEvent {
 /// A [TicketEvent] that is called when deleting a [Ticket] from the List of
 /// [Ticket] from Backend
 class TicketDeleteEvent extends TicketEvent {
+  final Ticket ticket;
+  TicketDeleteEvent({@required this.ticket});
   @override
   TicketDeleteState _getNextState(TicketBloc bloc) => TicketDeleteState();
 
   @override
-  Future<void> _performAction(TicketBloc bloc) {
-    // TODO: implement _performAction
-    return null;
+  Future<void> _performAction(TicketBloc bloc) async {
+    Firestore.instance
+        .collection('tickets')
+        .where('ticketName', isEqualTo: ticket.ticketName)
+        .getDocuments()
+        .then((snapshot) {
+      snapshot.documents
+          .where((snapshot) {
+            return (snapshot['description'] == ticket.description &&
+                snapshot['topic'] == ticket.topic &&
+                snapshot['authorId'] == ticket.authorId);
+          })
+          .first
+          .reference
+          .delete();
+    });
   }
 }
 

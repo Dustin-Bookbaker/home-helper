@@ -10,7 +10,7 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) => Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text('Profile'),
+            title: Text('Profil'),
             actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.exit_to_app),

@@ -1,60 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:homehelper/Common/constants/routing_constants.dart';
-import 'package:homehelper/Modules/Ticket/model/ticket.dart';
-import 'widgets/custom_card.dart';
+import 'package:homehelper/Pages/ticket/accepted_tickets_page.dart';
+import 'package:homehelper/Pages/ticket/my_tickets_page.dart';
+import 'package:homehelper/Pages/ticket/open_tickets_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    _tabController = TabController(
+      initialIndex: _currentIndex,
+      length: 3,
+      vsync: this,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('Home Helper'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              color: Colors.black,
-              onPressed: () => Navigator.pushNamed(context, homeSettingsRoute),
-            ),
-          ],
-        ),
-        body: Center(
-          child: Container(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance.collection('tickets').snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return Text('loading...');
-                  case ConnectionState.none:
-                    return Center(child: Text('No data'));
-                  default:
-                    return ListView(
-                      children: snapshot.data.documents
-                          .map((DocumentSnapshot document) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 5,
-                            horizontal: 20,
-                          ),
-                          child: TicketCard(
-                            ticket: Ticket.fromDocument(document),
-                          ),
-                        );
-                      }).toList(),
-                    );
-                }
-              },
-            ),
+          title: Text('Home Office Helper'),
+          bottom: TabBar(
+            indicatorColor: Colors.black,
+            labelStyle: TextStyle(fontSize: 18.0),
+            tabs: [
+              Tab(
+                child: Text(
+                  'Offene Tickets',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Meine Tickets',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Akzeptierte Tickets',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+            controller: _tabController,
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          mini: true,
-          foregroundColor: Colors.black,
-          onPressed: () => Navigator.of(context).pushNamed(createTicketRoute),
-          tooltip: 'Add Ticket',
-          child: Icon(Icons.add),
+        body: TabBarView(
+          physics: BouncingScrollPhysics(),
+          controller: _tabController,
+          children: [
+            OpenTicketsPage(),
+            MyTicketsPage(),
+            AcceptedTicketsPage(),
+          ],
         ),
       );
+
+//  void setIndex() {
+//    setState(() {
+//      _currentIndex = _tabController.index;
+//    });
+//  }
 }

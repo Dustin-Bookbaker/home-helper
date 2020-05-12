@@ -21,7 +21,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text('Create new Ticket'),
+          title: Text('Erstelle ein Ticket'),
         ),
         body: Container(
           child: Padding(
@@ -35,7 +35,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7.5),
                     child: Text(
-                      'Enter Ticket Name',
+                      'Wähle einen Namen für dein Ticket',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green[900],
@@ -58,7 +58,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7.5),
                     child: Text(
-                      'Enter Ticket Topic',
+                      'Wähle ein Thema für dein Ticket',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green[900],
@@ -72,7 +72,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                       minLines: 1,
                       maxLines: 2,
                       decoration: InputDecoration(
-                        labelText: 'Topic',
+                        labelText: 'Thema',
                       ),
                       controller: ticketTopicInputController,
                     ),
@@ -80,7 +80,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7.5),
                     child: Text(
-                      'Describe your problem',
+                      'Beschreibe dein Problem',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green[900],
@@ -94,7 +94,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                       minLines: 1,
                       maxLines: 100,
                       decoration: InputDecoration(
-                        labelText: 'Description',
+                        labelText: 'Beschreibung',
                       ),
                       controller: ticketDescriptionInputController,
                     ),
@@ -108,7 +108,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                         ),
                         color: Colors.lightGreen[400],
                         child: Text(
-                          'Submit Ticket',
+                          'Bestätigen',
                           style: TextStyle(
                             fontSize: 16,
                           ),
