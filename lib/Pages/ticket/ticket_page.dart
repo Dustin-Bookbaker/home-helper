@@ -109,6 +109,11 @@ class _TicketPageState extends State<TicketPage> {
                       ),
                   ],
                 ),
+                widget.ticket.helperName != ''
+                    ? Text(
+                        '${widget.ticket.helperName} hat dieses Ticket angenommen.',
+                      )
+                    : Container(),
               ],
             ),
           ),
@@ -129,10 +134,15 @@ class _TicketPageState extends State<TicketPage> {
         actions: <Widget>[
           FlatButton(
             onPressed: () {
-              BlocProvider.of<TicketBloc>(context).add(TicketAcceptEvent(
+              BlocProvider.of<TicketBloc>(context).add(
+                TicketAcceptEvent(
                   ticket: widget.ticket,
                   helperId:
-                      BlocProvider.of<UserBloc>(context).state.helperUser.uid));
+                      BlocProvider.of<UserBloc>(context).state.helperUser.uid,
+                  helperName:
+                      BlocProvider.of<UserBloc>(context).state.helperUser.name,
+                ),
+              );
               Navigator.pop(context);
               Navigator.pop(context);
             },
@@ -179,10 +189,12 @@ class _TicketPageState extends State<TicketPage> {
               setState(() {
                 BlocProvider.of<TicketBloc>(context).add(TicketAcceptEvent(
                     ticket: widget.ticket,
-                    helperId: BlocProvider.of<UserBloc>(context)
+                    helperId:
+                        BlocProvider.of<UserBloc>(context).state.helperUser.uid,
+                    helperName: BlocProvider.of<UserBloc>(context)
                         .state
                         .helperUser
-                        .uid));
+                        .name));
                 Navigator.pop(context);
                 Navigator.pop(context);
               });

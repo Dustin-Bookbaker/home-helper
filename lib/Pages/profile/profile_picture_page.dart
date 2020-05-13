@@ -25,12 +25,12 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pushNamed(context, homeProfileRoute),
         ),
-        title: Text('Firestore File Upload'),
+        title: Text('Profilbild hochladen'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Text('Selected Image'),
+            Text('Ausgewähltes Bild'),
             _image != null
                 ? Image.asset(
                     _image.path,
@@ -41,21 +41,21 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
                 : Container(height: 150),
             _image == null
                 ? RaisedButton(
-                    child: Text('Choose File'),
+                    child: Text('Datei auswählen'),
                     onPressed: chooseFile,
                     color: Colors.lightGreen[400],
                   )
                 : Container(),
             _image != null
                 ? RaisedButton(
-                    child: Text('Upload File'),
+                    child: Text('Datei hochladen'),
                     onPressed: uploadFile,
                     color: Colors.cyan,
                   )
                 : Container(),
             _image != null
                 ? RaisedButton(
-                    child: Text('Clear Selection'),
+                    child: Text('Auswahl entfernen'),
                     onPressed: () {
                       setState(() {
                         _image.deleteSync();
@@ -63,7 +63,7 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
                     },
                   )
                 : Container(),
-            Text('Uploaded Image'),
+            Text('Hochgeladenes Bild'),
             _uploadedFileURL != null
                 ? Image.network(
                     _uploadedFileURL,

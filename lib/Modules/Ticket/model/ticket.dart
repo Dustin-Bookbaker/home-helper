@@ -25,6 +25,7 @@ class Ticket extends Equatable {
   final String authorId;
   final String authorImagePath;
   final String helperId;
+  final String helperName;
 
   /// Standard Constructor for a Ticket.
   Ticket({
@@ -35,6 +36,7 @@ class Ticket extends Equatable {
     this.authorName,
     this.authorImagePath,
     this.helperId,
+    this.helperName,
   });
 
   Ticket.fromDocument(DocumentSnapshot document)
@@ -44,7 +46,8 @@ class Ticket extends Equatable {
         authorId = document['authorId'],
         authorName = document['authorName'],
         authorImagePath = document['authorImagePath'],
-        helperId = document['helperId'] ?? '';
+        helperId = document['helperId'] ?? '',
+        helperName = document['helperName'] ?? '';
 
   factory Ticket.fromJson(Map<String, dynamic> json) => _$TicketFromJson(json);
 
@@ -52,6 +55,13 @@ class Ticket extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object> get props =>
-      [ticketName, topic, description, authorId, authorName, helperId];
+  List<Object> get props => [
+        ticketName,
+        topic,
+        description,
+        authorId,
+        authorName,
+        helperId,
+        helperName,
+      ];
 }

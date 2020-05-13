@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homehelper/Pages/home/home_page.dart';
+import 'package:homehelper/Pages/messages/messages_page.dart';
 import 'package:homehelper/Pages/profile/profile_page.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -52,7 +53,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 }
 
 // Todo Add more
-enum TabItem { home, profile }
+enum TabItem { home, profile, messages }
 
 abstract class TabHelper {
   // ignore: public_member_api_docs
@@ -63,6 +64,8 @@ abstract class TabHelper {
         return TabItem.home;
       case 1:
         return TabItem.profile;
+      case 2:
+        return TabItem.messages;
       default:
         return TabItem.home;
     }
@@ -76,6 +79,8 @@ abstract class TabHelper {
         return 0;
       case TabItem.profile:
         return 1;
+      case TabItem.messages:
+        return 2;
       default:
         return 0;
     }
@@ -88,6 +93,8 @@ abstract class TabHelper {
         return 'Home';
       case TabItem.profile:
         return 'Profil';
+      case TabItem.messages:
+        return 'Nachrichten';
       default:
         return '';
     }
@@ -100,6 +107,8 @@ abstract class TabHelper {
         return Icons.home;
       case TabItem.profile:
         return Icons.account_circle;
+      case TabItem.messages:
+        return Icons.message;
       default:
         return Icons.adb;
     }
@@ -112,6 +121,8 @@ abstract class TabHelper {
         return (context) => HomePage();
       case TabItem.profile:
         return (context) => ProfilePage();
+      case TabItem.messages:
+        return (context) => MessagesPage();
       default:
         return (context) => HomePage();
     }

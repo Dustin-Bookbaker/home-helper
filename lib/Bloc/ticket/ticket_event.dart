@@ -16,19 +16,7 @@ class AppStartedTicketEvent extends TicketEvent {
 
   @override
   Future<void> _performAction(TicketBloc bloc) async {
-    bloc.add(TicketIdleEvent());
-  }
-}
-
-/// A [TicketEvent] that is called when Loading the List of [Ticket]
-/// from Backend
-class LoadingEvent extends TicketEvent {
-  @override
-  TicketLoadingState _getNextState(TicketBloc bloc) => TicketLoadingState();
-
-  @override
-  Future<void> _performAction(TicketBloc bloc) async {
-    return null;
+    bloc.add(TicketLoadingEvent());
   }
 }
 
@@ -51,7 +39,8 @@ class TicketAddEvent extends TicketEvent {
       'authorName': ticket.authorName,
       'authorImagePath': ticket.authorImagePath,
       'helperId': '',
-    }).then((v) => bloc.add(TicketIdleEvent()));
+      'helperName': '',
+    }).then((v) => bloc.add(TicketLoadingEvent()));
   }
 }
 
@@ -71,8 +60,13 @@ class TicketModifyEvent extends TicketEvent {
 class TicketAcceptEvent extends TicketEvent {
   final Ticket ticket;
   final String helperId;
+  final String helperName;
 
-  TicketAcceptEvent({@required this.ticket, @required this.helperId});
+  TicketAcceptEvent({
+    @required this.ticket,
+    @required this.helperId,
+    @required this.helperName,
+  });
   @override
   TicketAcceptState _getNextState(TicketBloc bloc) => TicketAcceptState();
 
@@ -88,10 +82,10 @@ class TicketAcceptEvent extends TicketEvent {
           .then(
         (snapshot) {
           snapshot.documents.first.reference.updateData(
-            {'helperId': helperId},
+            {'helperId': helperId, 'helperName': helperName},
           );
         },
-      ).then((v) => bloc.add(TicketIdleEvent()));
+      ).then((v) => bloc.add(TicketLoadingEvent()));
     } else {
       Firestore.instance
           .collection('tickets')
@@ -102,10 +96,10 @@ class TicketAcceptEvent extends TicketEvent {
           .then(
         (snapshot) {
           snapshot.documents.first.reference.updateData(
-            {'helperId': ''},
+            {'helperId': '', 'helperName': ''},
           );
         },
-      ).then((v) => bloc.add(TicketIdleEvent()));
+      ).then((v) => bloc.add(TicketLoadingEvent()));
     }
   }
 }
@@ -134,18 +128,41 @@ class TicketDeleteEvent extends TicketEvent {
           .first
           .reference
           .delete();
-    }).then((v) => bloc.add(TicketIdleEvent()));
+    }).then((v) => bloc.add(TicketLoadingEvent()));
   }
 }
 
 /// A [TicketEvent] that is called when Loading the List of [Ticket]
 /// from Backend is finished and successful
-class TicketIdleEvent extends TicketEvent {
+class TicketLoadingEvent extends TicketEvent {
   @override
-  TicketIdleState _getNextState(TicketBloc bloc) => TicketIdleState();
+  TicketLoadingState _getNextState(TicketBloc bloc) => TicketLoadingState();
 
   @override
   Future<void> _performAction(TicketBloc bloc) async {
+    List<Ticket> ticketList = [];
+    await Firestore.instance
+        .collection('tickets')
+        .getDocuments()
+        .then((snapshot) {
+      for (var doc in snapshot.documents) {
+        ticketList.add(Ticket.fromDocument(doc));
+      }
+    });
+    bloc.add(TicketIdleEvent(ticketList: ticketList));
+  }
+}
+
+class TicketIdleEvent extends TicketEvent {
+  final List<Ticket> ticketList;
+
+  TicketIdleEvent({@required this.ticketList});
+  @override
+  TicketIdleState _getNextState(TicketBloc bloc) =>
+      TicketIdleState.fromList(ticketList);
+
+  @override
+  Future<void> _performAction(TicketBloc bloc) {
     return null;
   }
 }
