@@ -14,6 +14,7 @@ class HelperUser extends Equatable {
   final String email;
   final double rating;
   final int score;
+  final String imagePath;
 
   const HelperUser({
     @required this.uid,
@@ -21,6 +22,7 @@ class HelperUser extends Equatable {
     this.email,
     this.rating,
     this.score,
+    this.imagePath,
   });
 
   const HelperUser._anonUser(String uid)
@@ -28,14 +30,16 @@ class HelperUser extends Equatable {
         name = 'Anonymous',
         email = '',
         rating = 0.0,
-        score = 0;
+        score = 0,
+        imagePath = '';
 
   HelperUser.fromDocument(DocumentSnapshot document)
       : uid = document['uid'] ?? '',
         name = document['name'] ?? '',
         email = document['email'] ?? '',
         rating = (document['rating']).toDouble() ?? 0.0,
-        score = (document['score']).toInt() ?? 0;
+        score = (document['score']).toInt() ?? 0,
+        imagePath = document['imagePath'] ?? '';
 
   factory HelperUser.fromJson(Map<String, dynamic> json) =>
       _$HelperUserFromJson(json);

@@ -20,6 +20,8 @@ class UserLoginState extends UserState {}
 
 class UserCreateState extends UserState {}
 
+class UserImageState extends UserState {}
+
 class UserIdleState extends UserState {
   UserIdleState(HelperUser helperUser) : super(helperUser: helperUser);
 }

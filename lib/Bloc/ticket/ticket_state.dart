@@ -16,6 +16,8 @@ class TicketAddState extends TicketState {}
 
 class TicketModifyState extends TicketState {}
 
+class TicketAcceptState extends TicketState {}
+
 class TicketDeleteState extends TicketState {}
 
 class TicketIdleState extends TicketState {}

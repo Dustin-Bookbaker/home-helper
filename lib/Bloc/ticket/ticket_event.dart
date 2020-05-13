@@ -49,8 +49,9 @@ class TicketAddEvent extends TicketEvent {
       'description': ticket.description,
       'authorId': ticket.authorId,
       'authorName': ticket.authorName,
+      'authorImagePath': ticket.authorImagePath,
       'helperId': '',
-    });
+    }).then((v) => bloc.add(TicketIdleEvent()));
   }
 }
 
@@ -64,6 +65,48 @@ class TicketModifyEvent extends TicketEvent {
   Future<void> _performAction(TicketBloc bloc) async {
     // TODO: implement _performAction
     return null;
+  }
+}
+
+class TicketAcceptEvent extends TicketEvent {
+  final Ticket ticket;
+  final String helperId;
+
+  TicketAcceptEvent({@required this.ticket, @required this.helperId});
+  @override
+  TicketAcceptState _getNextState(TicketBloc bloc) => TicketAcceptState();
+
+  @override
+  Future<void> _performAction(TicketBloc bloc) async {
+    if (ticket.helperId.isEmpty) {
+      Firestore.instance
+          .collection('tickets')
+          .where('authorId', isEqualTo: ticket.authorId)
+          .where('ticketName', isEqualTo: ticket.ticketName)
+          .where('description', isEqualTo: ticket.description)
+          .getDocuments()
+          .then(
+        (snapshot) {
+          snapshot.documents.first.reference.updateData(
+            {'helperId': helperId},
+          );
+        },
+      ).then((v) => bloc.add(TicketIdleEvent()));
+    } else {
+      Firestore.instance
+          .collection('tickets')
+          .where('authorId', isEqualTo: ticket.authorId)
+          .where('ticketName', isEqualTo: ticket.ticketName)
+          .where('description', isEqualTo: ticket.description)
+          .getDocuments()
+          .then(
+        (snapshot) {
+          snapshot.documents.first.reference.updateData(
+            {'helperId': ''},
+          );
+        },
+      ).then((v) => bloc.add(TicketIdleEvent()));
+    }
   }
 }
 
@@ -91,7 +134,7 @@ class TicketDeleteEvent extends TicketEvent {
           .first
           .reference
           .delete();
-    });
+    }).then((v) => bloc.add(TicketIdleEvent()));
   }
 }
 

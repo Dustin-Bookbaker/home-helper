@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homehelper/Common/constants/routing_constants.dart';
 import 'package:homehelper/Pages/authenticate/login/login_screen.dart';
 import 'package:homehelper/Pages/home/home_settings_page.dart';
+import 'package:homehelper/Pages/profile/profile_picture_page.dart';
 import 'package:homehelper/Pages/splash_page.dart';
 import 'package:homehelper/Pages/ticket/create_ticket_page.dart';
 import 'package:homehelper/Pages/ticket/ticket_page.dart';
@@ -32,6 +33,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           tab: TabItem.home,
         ),
       );
+
+    case homeProfileRoute:
+      return MaterialPageRoute(
+        builder: (context) => BottomNavigation(
+          tab: TabItem.profile,
+        ),
+      );
     case homeSettingsRoute:
       return MaterialPageRoute(
         builder: (context) => HomeSettingsPage(),
@@ -43,6 +51,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case createTicketRoute:
       return MaterialPageRoute(
         builder: (context) => CreateTicketPage(),
+      );
+    case profilePictureRoute:
+      return MaterialPageRoute(
+        builder: (context) => ProfilePicturePage(),
       );
     default:
       return MaterialPageRoute(

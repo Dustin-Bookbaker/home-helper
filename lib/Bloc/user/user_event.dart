@@ -61,6 +61,25 @@ class UserCreateEvent extends UserEvent {
   }
 }
 
+class UserImageEvent extends UserEvent {
+  final String image;
+
+  UserImageEvent({@required this.image});
+  @override
+  UserImageState _getNextState(UserBloc userBloc) => UserImageState();
+
+  @override
+  Future<void> _performAction(UserBloc userBloc) async {
+    await Firestore.instance
+        .collection('helperUsers')
+        .where('uid', isEqualTo: await userBloc._userRepository.getUser())
+        .getDocuments()
+        .then((snapshot) {
+      snapshot.documents.first.reference.updateData({'imagePath': image});
+    }).then((_) => userBloc.add(UserLoginEvent()));
+  }
+}
+
 class UserIdleEvent extends UserEvent {
   final HelperUser helperUser;
 

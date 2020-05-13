@@ -50,7 +50,23 @@ class UserRepository {
       'email': user.email,
       'rating': 0,
       'score': 0.0,
+      'imagePath': '',
     });
+  }
+
+  String getUserImagePath(String name, String uid) {
+    var path = '';
+    Firestore.instance
+        .collection('helperUsers')
+        .where('uid', isEqualTo: uid)
+        .where('name', isEqualTo: name)
+        .getDocuments()
+        .then(
+      (snapshot) {
+        path = snapshot.documents.first['imagePath'];
+      },
+    );
+    return path;
   }
 
   Future<void> signOut() async {

@@ -130,6 +130,11 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                                       .state
                                       .helperUser
                                       .name,
+                                  authorImagePath:
+                                      BlocProvider.of<UserBloc>(context)
+                                          .state
+                                          .helperUser
+                                          .imagePath,
                                 ),
                               ),
                             ),
