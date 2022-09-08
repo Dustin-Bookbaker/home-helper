@@ -110,8 +110,15 @@ class _TicketPageState extends State<TicketPage> {
                   ],
                 ),
                 widget.ticket.helperName != ''
-                    ? Text(
-                        '${widget.ticket.helperName} hat dieses Ticket angenommen.',
+                    ? Column(
+                        children: <Widget>[
+                          Text(
+                            '${widget.ticket.helperName} hat dieses Ticket angenommen.',
+                          ),
+                          Text(
+                            'Unter "Nachrichten" könnt ihr euch nun austauschen.',
+                          ),
+                        ],
                       )
                     : Container(),
               ],

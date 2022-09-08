@@ -27,69 +27,71 @@ class _ProfilePageState extends State<ProfilePage> {
               )
             ],
           ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Card(
-                  elevation: 6,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(360)),
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.network(
-                    state.helperUser.imagePath,
-                    height: 200,
-                    width: 200,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 40,
-                  ),
-                  child: Card(
+          body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Card(
+                    elevation: 6,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: BorderRadius.all(Radius.circular(360)),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 7.5,
-                            horizontal: 30,
-                          ),
-                          child: Text(
-                            state.helperUser.name,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                    clipBehavior: Clip.hardEdge,
+                    child: Image.network(
+                      state.helperUser.imagePath,
+                      height: 200,
+                      width: 200,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 40,
+                    ),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 7.5,
+                              horizontal: 30,
+                            ),
+                            child: Text(
+                              state.helperUser.name,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        ListTile(
-                          title: Text('Punkte'),
-                          trailing: Text('${state.helperUser.score}'),
-                        ),
-                        ListTile(
-                          title: Text('Bewertung'),
-                          trailing: Text('${state.helperUser.rating}'),
-                        ),
-                      ],
+                          ListTile(
+                            title: Text('Punkte'),
+                            trailing: Text('${state.helperUser.score}'),
+                          ),
+                          ListTile(
+                            title: Text('Bewertung'),
+                            trailing: Text('${state.helperUser.rating}'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                RaisedButton(
-                  child: state.helperUser.imagePath == ''
-                      ? Text('Profilbild hinzufügen')
-                      : Text('Profilbild ändern'),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(profilePictureRoute);
-                  },
-                ),
-              ],
+                  RaisedButton(
+                    child: state.helperUser.imagePath == ''
+                        ? Text('Profilbild hinzufügen')
+                        : Text('Profilbild ändern'),
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed(profilePictureRoute);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -37,8 +37,8 @@ class HelperUser extends Equatable {
       : uid = document['uid'] ?? '',
         name = document['name'] ?? '',
         email = document['email'] ?? '',
-        rating = (document['rating']).toDouble() ?? 0.0,
-        score = (document['score']).toInt() ?? 0,
+        rating = (document['score']).toDouble() ?? 0.0,
+        score = (document['rating']).toInt() ?? 0,
         imagePath = document['imagePath'] ?? '';
 
   factory HelperUser.fromJson(Map<String, dynamic> json) =>
